@@ -218,15 +218,9 @@ describe 'earlyoom', type: 'class' do
             { local_user: true }
           end
 
-          case facts[:os]['family']
-          when 'RedHat'
-            it { is_expected.to contain_systemd__dropin_file('local_user.conf').with_ensure('file') }
-            it { is_expected.to contain_systemd__dropin_file('local_user.conf').with_content(%r{^User=earlyoom$}) }
-            it { is_expected.to contain_user('earlyoom') }
-          else
-            it { is_expected.to contain_systemd__dropin_file('local_user.conf').with_ensure('absent') }
-            it { is_expected.not_to contain_user('earlyoom') }
-          end
+          it { is_expected.to contain_systemd__dropin_file('local_user.conf').with_ensure('file') }
+          it { is_expected.to contain_systemd__dropin_file('local_user.conf').with_content(%r{^User=earlyoom$}) }
+          it { is_expected.to contain_user('earlyoom') }
         end
       end
     end

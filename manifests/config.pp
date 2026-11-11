@@ -118,7 +118,7 @@ class earlyoom::config (
     validate_cmd => '/bin/bash -n %',
   }
 
-  if $local_user and $facts['os']['family'] == 'RedHat' {
+  if $local_user {
     user { 'earlyoom':
       ensure  => present,
       shell   => '/sbin/nologin',

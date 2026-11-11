@@ -100,26 +100,12 @@ describe 'earlyoom' do
       it { is_expected.to be_running }
     end
 
-    if fact('os.family') == 'RedHat'
-      describe file('/etc/passwd') do
-        its(:content) { is_expected.to match %r{^earlyoom:.*} }
-      end
+    describe file('/etc/passwd') do
+      its(:content) { is_expected.to match %r{^earlyoom:.*} }
+    end
 
-      describe process('earlyoom') do
-        its(:user) { is_expected.to eq 'earlyoom' }
-      end
-    else
-      describe file('/etc/passwd') do
-        its(:content) { is_expected.not_to match %r{^earlyoom:.*} }
-      end
-
-      describe process('earlyoom') do
-        its(:user) { is_expected.to eq 'root' }
-      end
-
-      describe user('earlyoom') do
-        it { is_expected.not_to exist }
-      end
+    describe process('earlyoom') do
+      its(:user) { is_expected.to eq 'earlyoom' }
     end
   end
 end

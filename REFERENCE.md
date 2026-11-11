@@ -220,10 +220,9 @@ Default value: `false`
 
 Data type: `Boolean`
 
-On the RedHat family of OSes the earlyoom service uses a systemd dynamic user in
-its service unit. Setting this to true will create a local system account "earlyoom"
+The earlyoom service uses a systemd dynamic user in its service unit.
+Setting this to true will create a local system account "earlyoom"
 to run earlyoom as instead.
-On the Debian family earlyoom runs as root and this parameter is ignored.
 Note to transition from `false` to `true` it may be necessary to stop earlyoom
 so the dynamic user is not present and the local user can be added.
 
